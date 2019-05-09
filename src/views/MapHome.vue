@@ -11,27 +11,27 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import MbMap from "@/components/mb-map.vue";
+import { MbMap } from "@/comps";
 
 const mapConfig = {
-    center: [116.98, 36.67],
-    zoom: 5,
-    minZoom: 1,
-    maxZoom: 10,
-    // interactive: true,
-    // attributionControl: true,
-    customAttribution: '© VoicerMap',
-    // bearingSnap: 7,
-    // scrollZoom: true,
-    // maxBounds: [[-100, -90], [100, 90]],
-    // boxZoom: true,
-    // dragRotate: false,
-    // dragPan: true,
+  center: [116.98, 36.67],
+  zoom: 5,
+  minZoom: 1,
+  maxZoom: 10,
+  // interactive: true,
+  // attributionControl: true,
+  customAttribution: "© VoicerMap"
+  // bearingSnap: 7,
+  // scrollZoom: true,
+  // maxBounds: [[-100, -90], [100, 90]],
+  // boxZoom: true,
+  // dragRotate: false,
+  // dragPan: true,
 };
 
 @Component({
   components: {
-    MbMap,
+    MbMap
   }
 })
 export default class MapHome extends Vue {

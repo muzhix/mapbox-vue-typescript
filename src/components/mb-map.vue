@@ -24,9 +24,7 @@ export default class MbMap extends Vue {
   map: mapboxgl.Map = this.map;
 
   public mounted() {
-    console.log(mapboxgl);
     mapboxgl.accessToken = this.accessToken;
-    console.log(mapboxgl.accessToken);
     let map = new mapboxgl.Map({
       ...this.mapOptions,
       container: this.mapId || this.$refs.container,
