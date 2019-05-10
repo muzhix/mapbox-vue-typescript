@@ -2,21 +2,29 @@
   <mb-map
     :mapId="mapId"
     :accessToken="accessToken"
-    :mapStyle="mapStyle"
+    :mapStyle.sync="mapStyle"
     :mapOptions="mapOptions"
     @load="onMapLoaded"
   >
-    <!-- <template v-slot:default> -->
-      <mb-marker v-slot:default :coordinates="center" @added="onMarkerAdded"></mb-marker>
-    <!-- </template> -->
+    <mb-marker :coordinates="center" @added="onMarkerAdded">
+      <template v-slot:marker>
+        <menu-icon></menu-icon>
+        <!-- <v-icon>mdi-map-marker</v-icon> -->
+      </template>
+      <template v-slot:popup>
+        <div>
+          <menu-icon></menu-icon>
+        </div>
+      </template>
+    </mb-marker>
   </mb-map>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import MbMap from '@/components/mb-map.vue';
-import MbMarker from '@/components/mb-marker.vue';
+import MbMap from "@/components/mb-map.vue";
+import MbMarker from "@/components/mb-marker.vue";
 
 const mapConfig = {
   center: [116.98, 36.67],
@@ -37,7 +45,7 @@ const mapConfig = {
 @Component({
   components: {
     MbMap,
-    MbMarker
+    MbMarker,
   }
 })
 export default class MapHome extends Vue {
@@ -52,7 +60,7 @@ export default class MapHome extends Vue {
     console.log(`${this.mapId} map loaded`);
   }
 
-  public onMarkerAdded(event:any) {
+  public onMarkerAdded(event: any) {
     let marker = event.marker;
   }
 }

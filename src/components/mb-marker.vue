@@ -1,5 +1,6 @@
 <template>
-  <div style="display:none">
+  <!-- style="display:none" -->
+  <div>
     <!-- slot for custom marker -->
     <slot name="marker"></slot>
     <!-- slot for popup -->
@@ -47,9 +48,11 @@ export default class MbMarker extends Vue {
   public addMarkerToMap(options: mapboxgl.MarkerOptions) {
     // handle customed marker
     if (this.$slots.marker) {
+      console.log("customed marker");
+      console.log(this.$slots.marker[0]);
       options.element = this.$slots.marker[0].elm as HTMLElement;
     }
-
+    console.log(options);
     this.marker = new mapboxgl.Marker(options).setLngLat(this.coordinates);
     // append marker to map
     this.handlemap((map: mapboxgl.Map) => {
