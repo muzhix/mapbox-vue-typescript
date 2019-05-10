@@ -5,13 +5,18 @@
     :mapStyle="mapStyle"
     :mapOptions="mapOptions"
     @load="onMapLoaded"
-  />
+  >
+    <!-- <template v-slot:default> -->
+      <mb-marker v-slot:default :coordinates="center" @added="onMarkerAdded"></mb-marker>
+    <!-- </template> -->
+  </mb-map>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import { MbMap } from "@/comps";
+import MbMap from '@/components/mb-map.vue';
+import MbMarker from '@/components/mb-marker.vue';
 
 const mapConfig = {
   center: [116.98, 36.67],
@@ -31,7 +36,8 @@ const mapConfig = {
 
 @Component({
   components: {
-    MbMap
+    MbMap,
+    MbMarker
   }
 })
 export default class MapHome extends Vue {
@@ -40,9 +46,14 @@ export default class MapHome extends Vue {
   private mapStyle: string = "mapbox://styles/mapbox/streets-v9";
   private mapId: string = "container";
   private mapOptions = mapConfig;
+  private center = [116.98, 36.67];
 
   public onMapLoaded(event: any) {
     console.log(`${this.mapId} map loaded`);
+  }
+
+  public onMarkerAdded(event:any) {
+    let marker = event.marker;
   }
 }
 </script>
