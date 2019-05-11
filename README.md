@@ -1,29 +1,27 @@
 # mapbox-vue-typescript
+> combine power of  [Vue](https://vuejs.org/) +  [Mapbox GL](https://mapbox.com/mapbox-gl-js) + [Typescript](http://www.typescriptlang.org/)
 
-## Project setup
+Vue-mapbox is wrapper around Mapbox GL JS library that provides vueish-way to interact with the map.
+
+## Development
 ```
+git clone git@github.com:hanbingde/mapbox-vue-typescript.git
+cd mapbox-vue-typescript
 npm install
 ```
 
-### Compiles and hot-reloads for development
+Compiles and hot-reloads for development:
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+Compiles and minifies for production:
 ```
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Inspired by soal's [vue-mapbox](https://github.com/soal/vue-mapbox)
+
+welcome PRs
