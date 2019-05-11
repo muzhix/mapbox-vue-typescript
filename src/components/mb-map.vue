@@ -79,10 +79,10 @@ export default class MbMap extends Vue {
 }
 .mgl-map-wrapper .mapboxgl-map {
   height: 100%;
-  /* left: 0; */
-  /* position: absolute; */
-  /* top: 0; */
   width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }
 </style>
 

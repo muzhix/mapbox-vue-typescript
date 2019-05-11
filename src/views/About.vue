@@ -13,7 +13,7 @@
       <v-icon large color="blue-grey darken-2">call_split</v-icon>
 
       <v-icon large color="orange darken-2">present_to_all</v-icon>
+      <v-icon large>mdi-map-marker</v-icon>
     </v-layout>
-    <menu-icon></menu-icon>
   </v-content>
 </template>
