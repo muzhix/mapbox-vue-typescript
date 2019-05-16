@@ -6,7 +6,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Provide, Prop, Emit } from "vue-property-decorator";
+import {
+  Vue,
+  Component,
+  Provide,
+  Prop,
+  Emit,
+  Watch
+} from "vue-property-decorator";
 import mapboxgl from "mapbox-gl";
 
 @Component
@@ -14,7 +21,7 @@ export default class MbMap extends Vue {
   initial: boolean = true;
   initialized: boolean = false;
 
-  map?: mapboxgl.Map = undefined;
+  private map?: mapboxgl.Map = undefined;
 
   @Prop({ required: true }) private mapId!: string;
   @Prop({ default: "mapbox://styles/mapbox/streets-v9" })
@@ -43,6 +50,13 @@ export default class MbMap extends Vue {
       map: this.map,
       component: this
     };
+  }
+
+  @Watch("mapStyle")
+  public onMapStyleChanged(nextStyle: string, prev: string) {
+    if (nextStyle != prev) {
+      (this.map as mapboxgl.Map).setStyle(nextStyle);
+    }
   }
 
   @Provide("handlemap")

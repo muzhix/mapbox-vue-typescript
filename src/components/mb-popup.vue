@@ -87,7 +87,6 @@ export default class MbPopup extends Vue {
       ...this.$props
     };
 
-    console.log(options);
     this.addPopup(options);
     this.initial = false;
   }
