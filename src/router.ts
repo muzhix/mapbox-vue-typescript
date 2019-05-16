@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/views/Home.vue';
 import MapHome from '@/views/MapHome.vue';
+import Dynamic from '@/views/Dynamic.vue';
 
 Vue.use(Router);
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/home',
       name: 'VueHome',
       component: Home,
+    },
+    {
+      path: '/dynamic',
+      name: 'Dynamic',
+      component: Dynamic,
     },
     {
       path: '/about',
