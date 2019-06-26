@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import Vuetify from 'vuetify';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 Vue.config.productionTip = false;
 Vue.use(Vuetify);
