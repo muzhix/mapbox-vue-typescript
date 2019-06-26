@@ -87,7 +87,7 @@ export default class MbMap extends Vue {
 @import url("//api.tiles.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css");
 
 .mgl-map-wrapper {
-  height: 500px;
+  height: 100%;
   position: relative;
   width: 100%;
 }

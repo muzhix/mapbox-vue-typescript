@@ -1,5 +1,6 @@
 <template>
-  <v-container fluid>
+  <v-container fluid fill-height>
+    <v-layout column>
     <v-layout wrap align-center>
       <v-flex xs6 sm3 d-flex>
         <v-select v-model="style" :items="mapStyles" label="Change map style"></v-select>
@@ -42,6 +43,7 @@
         </mb-marker>
       </template>
     </mb-map>
+    </v-layout>
   </v-container>
 </template>
 
