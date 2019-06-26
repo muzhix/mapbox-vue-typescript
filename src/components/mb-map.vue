@@ -1,7 +1,7 @@
 <template>
   <div class="mgl-map-wrapper">
     <div v-once :id="mapId" ref="container"/>
-    <slot/>
+    <slot v-if="initialized"/>
   </div>
 </template>
 
@@ -18,8 +18,8 @@ import mapboxgl from "mapbox-gl";
 
 @Component
 export default class MbMap extends Vue {
-  initial: boolean = true;
-  initialized: boolean = false;
+  public initial: boolean = true;
+  public initialized: boolean = false;
 
   private map?: mapboxgl.Map = undefined;
 
@@ -31,7 +31,7 @@ export default class MbMap extends Vue {
 
   public mounted() {
     mapboxgl.accessToken = this.accessToken;
-    let map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
       ...this.mapOptions,
       container: this.mapId || this.$refs.container,
       style: this.mapStyle
@@ -45,23 +45,23 @@ export default class MbMap extends Vue {
     });
   }
 
-  @Emit("load") public mapLoaded() {
+  @Emit('load') public mapLoaded() {
     return {
       map: this.map,
-      component: this
+      component: this,
     };
   }
 
-  @Watch("mapStyle")
+  @Watch('mapStyle')
   public onMapStyleChanged(nextStyle: string, prev: string) {
-    if (nextStyle != prev) {
+    if (nextStyle !== prev) {
       (this.map as mapboxgl.Map).setStyle(nextStyle);
     }
   }
 
-  @Provide("handlemap")
+  @Provide('handlemap')
   public handlemap(found: (map: mapboxgl.Map) => void) {
-    let vm = this;
+    const vm = this;
     function checkForMap() {
       if (vm.map) {
         found(vm.map);
@@ -74,20 +74,19 @@ export default class MbMap extends Vue {
   }
 
   public addMarker() {
-    let marker = new mapboxgl.Marker({
-      draggable: true
+    const marker = new mapboxgl.Marker({
+      draggable: true,
     })
       .setLngLat(this.mapOptions.center as mapboxgl.LngLatLike)
-      .addTo(<mapboxgl.Map>this.map);
+      .addTo(this.map as mapboxgl.Map);
   }
 }
 </script>
 
 <style>
-@import url("//api.tiles.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css");
 
 .mgl-map-wrapper {
-  height: 500px;
+  height: 100%;
   position: relative;
   width: 100%;
 }
@@ -96,7 +95,7 @@ export default class MbMap extends Vue {
   width: 100%;
   position: absolute;
   top: 0;
-  bottom: 0;
+  left: 0;
 }
 </style>
 

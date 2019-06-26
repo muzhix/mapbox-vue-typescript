@@ -1,5 +1,6 @@
 <template>
-  <v-container fluid>
+  <v-container fluid fill-height>
+    <v-layout column>
     <v-layout wrap align-center>
       <v-flex xs6 sm3 d-flex>
         <v-select v-model="style" :items="mapStyles" label="Change map style"></v-select>
@@ -19,12 +20,13 @@
       :mapOptions="mapOptions"
       @load="onMapLoaded"
     >
-      <template v-for="marker in markers">
+      <template v-for="(marker, index) in markers">
         <mb-marker
           :coordinates="marker.center"
           :draggable="marker.draggable"
           :color="marker.color? marker.color:'#9FA8DA'"
           @added="onMarkerAdded"
+          v-bind:key="index"
         >
           <template v-if="marker.custom">
             <v-icon slot="marker" color="red">mdi-map-marker</v-icon>
@@ -42,6 +44,7 @@
         </mb-marker>
       </template>
     </mb-map>
+    </v-layout>
   </v-container>
 </template>
 
@@ -128,7 +131,8 @@ export default class MapHome extends Vue {
     let center = new LngLat(this.randomLng(), this.randomLat());
     this.markers.push({
       center: center,
-      draggable: Math.random() > 0.5 ? true : false
+      draggable: Math.random() > 0.5 ? true : false,
+      index: this.markers.length - 1,
     });
   }
   public addCustomMarker() {

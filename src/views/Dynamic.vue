@@ -1,24 +1,27 @@
 <template>
-  <div>
-    <mb-map
-      :mapId="mapId"
-      :accessToken="accessToken"
-      :mapStyle.sync="mapStyle"
-      :mapOptions="mapOptions"
-      @load="onMapLoaded"
-    >
-      <template v-for="marker in markers">
-        <mb-marker
-          :coordinates="marker.center"
-          :draggable="marker.draggable"
-          @added="onMarkerAdded"
-        >
-          <!-- <v-icon slot="marker" color="blue">mdi-map-marker</v-icon> -->
-        </mb-marker>
-      </template>
-    </mb-map>
-    <button @click="addMarker" style="border: 1px solid">click to add marker Dynamically</button>
-  </div>
+  <v-container fluid fill-height>
+    <v-layout column>
+      <mb-map
+        :mapId="mapId"
+        :accessToken="accessToken"
+        :mapStyle.sync="mapStyle"
+        :mapOptions="mapOptions"
+        @load="onMapLoaded"
+      >
+        <template v-for="(marker, index) in markers">
+          <mb-marker
+            :coordinates="marker.center"
+            :draggable="marker.draggable"
+            @added="onMarkerAdded"
+            v-bind:key="index"
+          >
+            <!-- <v-icon slot="marker" color="blue">mdi-map-marker</v-icon> -->
+          </mb-marker>
+        </template>
+      </mb-map>
+      <button @click="addMarker" style="border: 1px solid">click to add marker Dynamically</button>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -74,7 +77,8 @@ export default class Dynamic extends Vue {
     let center = new LngLat(this.randomLng(), this.randomLat());
     this.markers.push({
       center: center,
-      draggable: Math.random() > 0.5 ? true : false
+      draggable: Math.random() > 0.5 ? true : false,
+      index: this.markers.length - 1,
     });
   }
 
