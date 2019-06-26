@@ -1,7 +1,7 @@
 <template>
   <div class="mgl-map-wrapper">
     <div v-once :id="mapId" ref="container"/>
-    <slot/>
+    <slot v-if="initialized"/>
   </div>
 </template>
 
@@ -91,12 +91,14 @@ export default class MbMap extends Vue {
   position: relative;
   width: 100%;
 }
-.mgl-map-wrapper .mapboxgl-map {
+.mgl-map-wrapper 
+
+.mapboxgl-map {
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0;
-  bottom: 0;
+  left: 0;
 }
 </style>
 
